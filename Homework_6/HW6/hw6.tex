@@ -1,0 +1,250 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ}
+\pagestyle{fancy}
+\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[UTF8]{ctex}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\lhead{Name: 陈稼霖\\ StudentID: 45875852}  %replace with your name
+\rhead{SI 140 \\ Probability and Statistics \\ Semester Spring 2019 \\ Assignment 6} %replace XYZ with the homework course number, semester (e.g. ``Spring 2019"), and assignment number.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%Solutions to problems go below.  Please follow the guidelines from https://www.overleaf.com/read/sfbcjxcgsnsk/
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{1}
+Let $X$ be the total from rolling 6 fair dice, and let $X_1,...,X_6$ be the individual rolls. What is $P(X=18)$?
+\end{problem}
+\begin{sol}
+The generating function of $X_i~~(i=1,2,\cdots,6)$ is
+\[
+g_{X_i}(z)=\frac{1}{6}z+\frac{1}{6}z^2+\frac{1}{6}z^3+\frac{1}{6}z^4+\frac{1}{6}z^5+\frac{1}{6}z^6=\frac{z}{6}(1+z+z^2+z^3+z^4+z^5+z^6)~~(i=1,2,\cdots,6)
+\]
+Then the generating function of $X=\sum_{i=1}^{6}X_i$ is
+\[
+g_X(z)=\prod_{i=1}^6g_{X_i}(z)=\frac{z^6}{6^6}(1+z+z^2+z^3+z^4+z^5)^6=\frac{z^6}{6^6}(\frac{1-z^6}{1-z})^6
+\]
+where
+\[
+(1-t^6)^6=\sum_{j=0}^6\left(\begin{array}{c}6\\j\end{array}\right)(-1)^jz^{6j}
+\]
+and
+\[
+\frac{1}{(1-z)^6}=(1+z+z^2+\cdots)^6=\sum_{k=0}^{\infty}a_kz^k
+\]
+Here, $a_k$ is the number of lists (``list'' means order matters) consisting of six independent non-negative integer which add to $k$. We can also regard $a_k$ as the number of cases in which $k$ balls in a line are separated by five boards, so
+\[
+a_k=\left(\begin{array}{c}k+5\\5\end{array}\right)
+\]
+So
+\[
+\frac{1}{(1-z)^6}=(1+z+z^2+\cdots)^6=\sum_{k=0}^{\infty}\left(\begin{array}{c}k+5\\5\end{array}\right)z^k
+\]
+and
+\[
+g_X(z)=\frac{z^6}{6^6}\left[\sum_{j=0}^6\left(\begin{array}{c}6\\j\end{array}\right)(-1)^jz^{6j}\right]\left[\sum_{k=0}^{\infty}\left(\begin{array}{c}k+5\\5\end{array}\right)z^k\right]
+\]
+In the generating function above, the coefficient of $z^{18}$ item is
+\[
+\frac{1}{6^6}\left[\left(\begin{array}{c}6\\0\end{array}\right)\left(\begin{array}{c}17\\5\end{array}\right)-\left(\begin{array}{c}6\\1\end{array}\right)\left(\begin{array}{c}11\\5\end{array}\right)+\left(\begin{array}{c}6\\2\end{array}\right)\left(\begin{array}{c}5\\5\end{array}\right)\right]=\frac{3431}{6^6}\approx0.07354
+\]
+Reference: Blitzstein, Joseph K., and Jessica Hwang. \textit{Introduction to probability}. Chapman and Hall/CRC, 2014: p264-265.
+\end{sol}
+
+\begin{problem}{2} 
+Find the MGF of $X\sim Unif(a,b)$ and $Y\sim Expo(\lambda)$.
+\end{problem}
+\begin{sol}
+The PDF of $X$ is
+\[
+f_X(x)=\frac{1}{b-a},~~x\in(a,b)
+\]
+The MGF of $X$ is
+\[
+M_X(t)=\int_{a}^{b}e^{-tx}f_X(x)dx=\frac{e^{-at}-e^{-bt}}{(b-a)t}
+\]
+The PDF of $Y$ is
+\[
+f_Y(y)=\lambda e^{-\lambda y},~~x\geq0
+\]
+The MGF of $Y$ is
+\[
+M_Y(t)=\int_{0}^{\infty}e^{-tx}f_Y(y)dy=\frac{\lambda}{t+\lambda}
+\]
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{3}
+Find the MGF of $X\sim Bern(p)$ and $Y\sim Bin(n,p)$.
+\end{problem}
+\begin{sol}
+The PMF of $X$ is
+\[
+P_X(x)=\left\{\begin{array}{ll}
+p,&\text{ if }x=1\\
+1-p,&\text{ if }x=0
+\end{array}\right.
+\]
+The MGF of $X$ is
+\[
+M_X(t)=(1-p)+pe^{-t}
+\]
+The MGF of $Y$ is
+\[
+M_Y(t)=[M_X(t)]^n=[(1-p)+pe^{-t}]^n
+\]
+\end{sol}
+
+\begin{problem}{4}
+Consider a setting where a Poisson approximation should work well: let $A_1,...,A_n$ be independent, rare events, with $n$ large and $p_j=P(A_j)$ small for all $j$. Let $X=I(A_1)+\cdots+I(A_n)$ count how many of the rare events occur, and Let $\lambda = E(X)$.
+\begin{enumerate}
+    \item[(a).] Find the MGF of $X$.
+    \item[(b).] If the approximation $1+x\approx e^x$ (this is a good approximation when $x$ is very close to $0$ but terrible when $x$ is not close to $0$) is used to write each factor in the MGF of $X$ as $e$ to a power.What happens to the MGF? 
+    (Hint: if $Y\sim Pois(\lambda)$, then $M_Y=e^{(e^t-1)\lambda}$)
+\end{enumerate}
+\end{problem}
+\begin{sol}
+\\(a) The MGF of $X$ is
+\begin{align*}
+M_X(t)=&\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}e^{-\lambda}e^{kt}\\
+=&e^{-\lambda}\sum_{k=0}^{\infty}\frac{(\lambda e^t)^k}{k!}\\
+=&e^{-\lambda}e^{\lambda e^t}=e^{\lambda(e^t-1)}
+\end{align*}
+(b) If the approximation $1+x\approx e^x$ works, the MGF of $x$ is
+\[
+M_X(t)=e^{\lambda t}
+\]
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{5}
+Suppose $X\sim Bin(n,p)$.
+By using Binomial PGF, find the expectation $E(X)$ and variance $Var(X)$.
+\end{problem}
+\begin{sol}
+According to the definition, the PGF of a Bernoulli distributed random variable is
+\[
+G_{X_i}(z)=(1-p)+pz
+\]
+The PGF of $X$ is
+\[
+G_{X}(z)=G_{\sum_{i=1}^nX_i}(z)=\prod_{i=1}^nG_{X_i}{z}=[(1-p)+pz]^n
+\]
+Then
+\begin{align*}
+G_X'(z)=&np[(1-p)+pz]^{n-1}\\
+G_X''(z)=&n(n-1)p^2[(1-p)+pz]^{n-2}
+\end{align*}
+The expectation is
+\[
+E(X)=G'(1)=np
+\]
+The variance is
+\[
+Var(X)=G''(1)+G'(1)-[G'(1)]^2=n(n-1)p^2+np-(np)^2=np(1-p)
+\]
+\end{sol}
+
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{6}
+If a random variable X has the following moment-generating function:
+$$M(t) = \frac{1}{10}e^{t} + \frac{2}{10}e^{2t} + \frac{3}{10}e^{3t} + \frac{4}{10}e^{4t}$$
+for all t, then what is the $PMF$ of X?
+\end{problem}
+\begin{sol}
+Let $t=-\ln z$, the PGF of X is
+\[
+G_X(z)=M_X(-\ln z)=\frac{1}{10}z^{-1}+\frac{2}{10}z^{-2}+\frac{3}{10}z^{-3}+\frac{4}{10}z^{-4}
+\]
+The PMF of $X$ is
+\[
+P_X(x)=\left\{\begin{array}{ll}
+\frac{1}{10},&x=-1\\
+\frac{2}{10},&x=-2\\
+\frac{3}{10},&x=-3\\
+\frac{4}{10},&x=-4\\
+\end{array}\right.
+\]
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{7}
+ Suppose that Y has the following moment-generating function:
+ $$ M_{Y}(t) = \frac{e^t}{4-3e^t}, t < -ln(0.75)$$
+ \\
+ I).Find  E(Y)\\
+ II).Find Var(Y)
+\end{problem}
+\begin{sol}
+\\I)
+\[
+E(Y)=(-1)^1E'(0)=\frac{4e^t}{(4-3e^t)^2}|_{t=0}=4
+\]
+II)
+\begin{gather*}
+E(Y^2)=(-1)^2E''(0)=\frac{4e^t(16-9e^{2t})}{(4-3e^t)^4}|_{t=0}=28\\
+Var(Y)=E(Y^2)-[E(Y)]^2=12
+\end{gather*}
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{8}If a random variable X has  $E[X^k] = 0.2$ k=1,2,3....,then what is the$ PMF$ of X?
+\end{problem}
+\begin{sol}
+The MGF of $X$
+\begin{align*}
+M_X(t)=&1+\frac{(-1)^1}{1!}E(X^1)t+\frac{(-1)^2}{2!}E(X^2)t^2+\frac{(-1)^3}{3!}E(X^3)t^3+\cdots\\
+=&0.8+0.2(1+\frac{(-1)^1}{1!}t+\frac{(-1)^2}{2!}t^2+\frac{(-1)^3}{3!}t^3+\cdots)\\
+=&0.8+0.2e^{-t}
+\end{align*}
+Let $t=-\ln z$, the PGF of $X$ is
+\[
+G_X(z)=M_X(-\ln z)=0.8+0.2z
+\]
+The PMF of $X$ is
+\[
+P_X(x)=\left\{\begin{array}{ll}0.2,&\text{ if }x=1\\0.8,&\text{ if }x=0\end{array}\right.
+\]
+\end{sol}
+
+%Copy the following block of text for each problem in the assignment.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

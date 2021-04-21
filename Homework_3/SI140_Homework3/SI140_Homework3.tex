@@ -1,0 +1,403 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ}
+\pagestyle{fancy}
+\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[UTF8]{ctex}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\lhead{Name: 陈稼霖\\ StudentID: 45875852}  %replace with your name
+\rhead{SI 140 \\ Probability and Statistics \\ Semester Spring 2019 \\ Assignment 3} %replace XYZ with the homework course number, semester (e.g. ``Spring 2019"), and assignment number.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%Solutions to problems go below.  Please follow the guidelines from https://www.overleaf.com/read/sfbcjxcgsnsk/
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{1} 
+Let $\Omega=\{\omega_1,\omega_2,\omega_3\}$, $P(\omega_1)=P(\omega_2)=P(\omega_3)=1/3$, and define $X,Y$ and $Z$ as follows:
+\[
+X(\omega_1)=1,X(\omega_2)=2, X(\omega_3)=3;\]
+\[Y(\omega_1)=2,Y(\omega_2)=3, Y(\omega_3)=1;\]
+\[Z(\omega_1)=3,Z(\omega_2)=1, Z(\omega_3)=2.
+\]
+Show that these three random variables have the same probability distribution. Find the probability distributions of $X+Y$, $Y+Z$, and $Z+X$.
+\end{problem}
+\begin{sol}
+Since
+\begin{gather*}
+\left\{\begin{array}{l}
+P(X=1)=P(\omega_1)=\frac{1}{3},P(X=2)=P(\omega_2)=\frac{1}{3},P(X=3)=P(\omega_3)=\frac{1}{3}\\
+P(Y=1)=P(\omega_3)=\frac{1}{3},P(Y=2)=P(\omega_1)=\frac{1}{3},P(Y=3)=P(\omega_2)=\frac{1}{3}\\
+P(Z=1)=P(\omega_2)=\frac{1}{3},P(Z=2)=P(\omega_3)=\frac{1}{3},P(Z=3)=P(\omega_1)=\frac{1}{3}\\
+\end{array}\right.\\
+\Longrightarrow P(X=i)=P(Y=i)=P(Z=i)=\frac{1}{3},~~i=1,2,3
+\end{gather*}
+these three random variables have the same probability distribution.
+\begin{gather*}
+P(X+Y)=\left\{\begin{array}{ll}
+P(X=1)P(Y=2)=P(\omega_1)=\frac{1}{3},&X+Y=3\\
+P(X=3)P(Y=1)=P(\omega_3)=\frac{1}{3},&X+Y=4\\
+P(X=2)P(Y=3)=P(\omega_2)=\frac{1}{3},&X+Y=5\\
+\end{array}\right.\\
+P(Y+Z)=\left\{\begin{array}{ll}
+P(Y=1)P(Z=2)=P(\omega_3)=\frac{1}{3},&Y+Z=3\\
+P(Y=3)P(Z=1)=P(\omega_2)=\frac{1}{3},&Y+Z=4\\
+P(Y=2)P(Z=3)=P(\omega_1)=\frac{1}{3},&Y+Z=5\\
+\end{array}\right.\\
+P(Z+X)=\left\{\begin{array}{ll}
+P(Z=2)P(X=1)=P(\omega_2)=\frac{1}{3},&Z+X=3\\
+P(Z=3)P(X=1)=P(\omega_1)=\frac{1}{3},&Z+X=4\\
+P(Z=2)P(X=3)=P(\omega_3)=\frac{2}{9},&Z+X=5\\
+\end{array}\right.
+\end{gather*}
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{2}
+In No.1 find the probability distribution of 
+\begin{equation*}
+    X+Y-Z, \sqrt{(X^2+Y^2)Z}, \frac{Z}{|X-Y|}
+\end{equation*}
+\end{problem}
+\begin{sol}
+\[
+P(X+Y-Z)=\left\{\begin{array}{ll}
+P(X+Y=3)P(Z=3)=P(\omega_1)=\frac{1}{3},&X+Y-Z=0\\
+P(X+Y=4)P(Z=2)=P(\omega_3)=\frac{1}{3},&X+Y-Z=2\\
+P(X+Y=5)P(Z=1)=P(\omega_2)=\frac{1}{3},&X+Y-Z=4\\
+\end{array}\right.
+\]
+\small
+\[
+P(\sqrt{(X^2+Y^2)Z})=\left\{\begin{array}{ll}
+P(X=1)P(Y=2)P(Z=3)=P(\omega_1)=\frac{1}{3},&\sqrt{(X^2+Y^2)Z}=2\sqrt{3}\\
+P(X=2)P(Y=3)P(Z=1)=P(\omega_2)=\frac{1}{3},&\sqrt{(X^2+Y^2)Z}=\sqrt{13}\\
+P(X=3)P(Y=1)P(Z=2)=P(\omega_3)=\frac{1}{3},&\sqrt{(X^2+Y^2)Z}=2\sqrt{5}\\
+\end{array}\right.
+\]
+\scriptsize
+\[
+P(\frac{Z}{|X-Y|})=\left\{\begin{array}{ll}
+P(X=1)P(Y=2)P(Z=3)=P(\omega_1)=\frac{1}{3},&\frac{Z}{|X-Y|}=3\\
+P(X=2)P(Y=3)P(Z=1)+P(X=3)P(Y=1)P(Z=2)=P(\omega_2)+P(\omega_3)=\frac{2}{3},&\frac{Z}{|X-Y|}=1\\
+\end{array}\right.
+\]
+\normalsize
+\end{sol}
+
+\begin{problem}{3}
+Let $X$ be integer-valued and let $F$ be its distribution function. Show that for every $x$ and $a<b$
+\[P(X=x)=\lim_{\epsilon\downarrow 0}[F(x+\epsilon)-F(x-\epsilon)]\]
+\[P(a<X<b)=\lim_{\epsilon\downarrow 0}[F(b-\epsilon)-F(a+\epsilon)]\]
+[The results are true for any random variable but require more advanced proofs even when $\Omega$ is countable.]
+\end{problem}
+\begin{sol}
+\begin{gather*}
+\begin{align*}
+P(X=x)=&P((-\infty,x]-(-\infty,x))\\
+=&P(X\leq x)-P(X<x)\\
+=&F(x)-\lim_{\epsilon\downarrow0}F(x-\epsilon)\\
+=&\lim_{\epsilon\downarrow0}F(x+\epsilon)-\lim_{\epsilon\downarrow0}F(x-\epsilon)\\
+&\text{(because the distribution function, }F\text{, is right continuous)}\\
+=&\lim_{\epsilon\downarrow0}[F(x+\epsilon)-F(x-\epsilon)]\\
+\end{align*}\\
+\begin{align*}
+P(a<x<b)=&F((-\infty,b]-(-\infty,a]-\{b\})\\
+=&P(x\leq b)-P(x\leq a)-P(b)\\
+=&F(b)-F(a)-\lim_{\epsilon\downarrow0}[F(b+\epsilon)-F(b-\epsilon)]\\
+&\text{(because the distribution function, }F\text{, is right continuous)}\\
+=&\lim_{\epsilon\downarrow0}F(b+\epsilon)-\lim_{\epsilon\downarrow0}F(a+\epsilon)-\lim_{\epsilon\downarrow0}[F(b+\epsilon)-F(b-\epsilon)]\\
+=&\lim_{\epsilon\downarrow 0}[F(b-\epsilon)-F(a+\epsilon)]
+\end{align*}
+\end{gather*}
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{4}
+(a) Is there a discrete distribution with support 1,2,3,..., such that the value of the PMF at $n$ is proportional to $1/n$?
+
+(b) Is there a discrete distribution with support 1,2,3,..., such a that the value of the PMF at $n$ is proportional to $1/n^2$?
+\end{problem}
+\begin{sol}
+\\(a) No. Assume the PMF at $n$ is
+\[
+p_n=\frac{k}{n}
+\]
+Since
+\[
+\sum_{i=1}^{\infty}p_i=\sum_{i=1}^{\infty}\frac{k}{n}=\left\{\begin{array}{ll}
++\infty,&k>0\\
+0,&k=0\\
+-\infty,&k<0\\
+\end{array}\right\}\neq1
+\]
+the assumption is incorrect, which means there is not such a discrete distribution with $1,2,3,...,$ that the value of PMF at n is proportional to $1/n$.\\
+(b) Yes. Assume the PMF at $n$ is
+\[
+p_n=\frac{k}{n^2}
+\]
+In this way,
+\[
+\sum_{i=1}^{\infty}p_i=\sum_{i=1}^{\infty}\frac{k}{n^2}=\frac{\pi^2}{6}k=1
+\]
+so the discrete distribution
+\[
+p_n=\frac{6}{\pi^2n^2},~~n=1,2,3,...
+\]
+satisfies that the value of the PMF at $n$ is proportional to $1/n^2$.
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{5}
+Let $X$ have PMF
+\[P(X=k)=cp^k/k \text{ for } k=1,2,...\]
+where $p$ is a parameter with $0<p<1$ and $c$ is a normalizing constant. We have $c=-1/\log(1-p)$, as seen from the Taylor series
+\[-log(1-p)=p+\frac{p^2}{2}+\frac{p^3}{3}+\cdots.\]
+This distribution is called the \textit{Logarithmic} distribution (because of the log in the above Taylor series), and has often been used in ecology. Find the mean of $X$.
+\end{problem}
+\begin{sol}
+\[
+\sum_{k=1}^{\infty}P(X=k)=\sum_{k=1}^{\infty}\frac{cp^k}{k}=-c\ln(1-p)=1\Longrightarrow c=\frac{1}{-\ln(1-p)}
+\]
+The mean of $X$ is
+\[
+E(X)=\sum_{k=1}^{\infty}kP(X=k)=\sum_{k=1}^{\infty}cp^k=\lim_{n\to\infty}\frac{1}{1-\ln(1-p)}\frac{p(1-p^n)}{1-p}=\frac{p}{[1-\ln(1-p)](1-p)}
+\]
+\end{sol}
+
+\begin{problem}{6}
+Suppose $F$ is some cumulative distribution function. Then for any real number $y$, the
+function $F_{y}$ defined by $F_{y}(x)$ = $F(x\text{-}  y)$ is also a cumulative distribution function. In fact, $F_{y}$ is just a “shifted” version of $F$
+\end{problem}
+\begin{sol}
+Since
+\[
+F_y(X=x)=F(X=(x-y))=P(X\leq(x-y))
+\]
+$F_y$ is a cumulative distribution function.
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{7}
+Let X be a random variable, with cumulative distribution function $F_{X}$ . Prove
+that $P(X = a) = 0$ if and only if the function $F_{X}$ is continuous at $a$.
+\end{problem}
+\begin{sol}
+\\Sufficiency: Suppose the function $F_X$ is continuous at $a$, which means
+\[
+\lim_{y\to a^-}F_X(X=y)=F_X(X=a)
+\]
+So
+\begin{align*}
+P(X=a)=&P((-\infty,a]-(-\infty,a))=F(X=a)-P(X<a)\\
+=&F(X=a)-\lim_{y\to a^-}F(X=y)=0
+\end{align*}
+Necessity: Suppose $P(X=a)=0$. Then
+\[
+\lim_{y\to a^-}F_X(X=y)=P(X\leq a)-P(X=a)=F_X(X=a)-0=F_X(X=a)
+\]
+which means $F_X$ is left continuous at $a$, and
+\[
+\lim_{y\to a^+}F_X(X=y)=P(X\leq a)+\lim_{y\to a^+}P(a<X<y)=F_X(X=a)+0=F_X(X=a)
+\]
+which means $F_X$ is right continuous at $a$. Therefore, the function $F_X$ is continuous at $a$.\\
+Therefore, $P(X = a) = 0$ if and only if the function $F_{X}$ is continuous at $a$.
+\end{sol}
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{8}
+Suppose that
+$$p_{n} = cq^{n-1}p, 0 \leq n\leq m$$
+where c is a constant and m is a positive integer; cf. (4.4.8). Determine
+c so that $\sum_{n=1}^m p_{n}=1$. (This scheme corresponds to the waiting time
+for a success when it is supposed to occur within m trials.)
+
+\end{problem}
+\begin{sol}
+\[
+\sum_{n=1}^{m}p_n=\sum_{n=1}^{m}cq^{n-1}p=cp\frac{1-q^m}{1-q}=c(1-q^m)=1\Longrightarrow c=\frac{1}{1-q^m}
+\]
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{9}
+A perfect coin is tossed n times. Let $Y_{n}$ denote the number of heads
+obtained minus the number of tails. Find the probability distribution
+of $Y_{n}$ and its mean.[Hint: there is a simple relation between $Y_{n}$ and the $S_{n}$ in Example 9 of 4.4]
+
+\end{problem}
+\begin{sol}
+Since $S_n$ denote the number of heads obtained in Example 9 of 4.4, $n-S_n$ denote the number of tails obtained is $n-S_n$. So the simple relation between $Y_n$ and the $S_n$ is
+\[
+Y_n=S_n-(n-S_n)=2S_n-n
+\]
+The probability distribution of $Y_n$ is
+\[
+P(Y_n=k)=P(S_n=\frac{k+n}{2})=\frac{1}{2^n}\left(\begin{array}{c}n\\\frac{k+n}{2}\end{array}\right)
+\]
+Its mean is
+\begin{align*}
+E(Y_n)=&\sum_{Y_n=-n+2k,k=0,1,2,...,n}k\frac{1}{2^n}\left(\begin{array}{c}n\\\frac{k+n}{2}\end{array}\right)\\
+=&\sum_{k=0}^n(2k-n)\frac{1}{2^n}\left(\begin{array}{c}n\\\frac{k+n}{2}\end{array}\right)\\
+=&2\sum_{k=0}^nk\frac{1}{2^n}\left(\begin{array}{c}n\\\frac{k+n}{2}\end{array}\right)-n\sum_{k=0}^n\frac{1}{2^n}\left(\begin{array}{c}n\\\frac{k+n}{2}\end{array}\right)\\
+=&2\times\frac{n}{2}-n\\
+=&0
+\end{align*}
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{10}
+Let
+$$P(X = n) = p_{n} = \frac{1}{n(n+1)}, n \geq 1$$
+Show that it is a probability distribution for X? Find $P(X \geq m)$ for any $m$ and $E(X)$.
+\end{problem}
+\begin{sol}
+Since
+\[
+P(X=n)=p_n=\frac{1}{n(n+1)}\geq0
+\]
+for any integer $n\geq1$, and
+\[
+\sum_{n=1}^{\infty}P(X=n)=\sum_{n=1}^{\infty}\frac{1}{n(n+1)}=\sum_{n=1}^{\infty}\frac{1}{n}-\frac{1}{n+1}=\lim_{n\to\infty}(1-\frac{1}{n+1})=1
+\]
+$P(X=n)$ is a probability distribution for $X$.
+\large
+\[
+P(X\geq m)=\left\{\begin{array}{ll}
+1,&m<1\\
+\sum_{n=[m]}^{\infty}\frac{1}{n(n+1)}=\frac{1}{[m]},&m\geq1
+\end{array}\right.
+\]
+\normalsize
+where $[m]$ is the smallest integer that is no less than $m$.
+\[
+E(X)=\sum_{n=1}^{\infty}n\frac{1}{n(n+1)}=\sum_{n=1}^{\infty}\frac{1}{n+1}=+\infty
+\]
+Therefore, $E(X)$ does not exist.
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}

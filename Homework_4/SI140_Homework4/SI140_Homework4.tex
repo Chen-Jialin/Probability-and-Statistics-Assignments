@@ -1,0 +1,502 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry} 
+ \usepackage{mathrsfs}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ}
+\pagestyle{fancy}
+\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[UTF8]{ctex}
+\usepackage[urlcolor=black]{hyperref}
+\hypersetup{hidelinks}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\lhead{Name: 陈稼霖\\ StudentID: 45875852}  %replace with your name
+\rhead{SI 140 \\ Probability and Statistics \\ Semester Spring 2019 \\ Assignment 4} %replace XYZ with the homework course number, semester (e.g. ``Spring 2019"), and assignment number.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%Solutions to problems go below.  Please follow the guidelines from https://www.overleaf.com/read/sfbcjxcgsnsk/
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{1} 
+Let $\lambda>0$ and define $f$ as follows:
+\begin{equation}
+    f(u)=\begin{cases}
+    &\frac{1}{2}\lambda e^{-\lambda u} \quad \text{if } u\geq 0;\\
+    &\frac{1}{2}\lambda e^{+\lambda u} \quad \text{if } u<0
+    \end{cases}
+\end{equation}
+This $f$ is called bilateral exponential. If $X$ has density $f$, find the density of $|X|$.
+\end{problem}
+\begin{sol}
+The density of $|X|$ is
+\[
+g(x=|X|)=
+\left\{\begin{array}{ll}
+f(-x)+f(x)=\frac{1}{2}\lambda e^{+\lambda(-x)}+\frac{1}{2}\lambda e^{-\lambda x}=\lambda e^{-\lambda x},&x>0\\
+f(0)=\frac{1}{2},&x=0\\
+0,&x<0
+\end{array}\right.
+\]
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{2}
+If $X$ is a positive random variable with density $f$, find the density of $+\sqrt{X}$. Apply this to the distribution of the side length of a square when its area is uniformly distributed in $[a,b]$.
+\end{problem}
+\begin{sol}
+The cumulative distribution function of $X$ is
+\[
+F(x)=P(X\leq x)=\int_0^xf(x)dx,~~x>0
+\]
+Let $x=+\sqrt{X}$, then the cumulative distribution of $+\sqrt{X}$ is
+\[
+G(x)=P(X\leq x^2)=F(x^2)=\int_0^{x^2}f(u^2)d(u^2),~~x>0
+\]
+The density of $+\sqrt{X}$ is
+\[
+g(x)=\frac{dG(x)}{dx}=\frac{d}{dx}\int_0^{x^2}f(u^2)d(u^2)=\frac{d}{d(x^2)}\int_0^{x^2}f(u^2)d(u^2)\cdot\frac{d(x^2)}{dx}=2xf(x^2),~~x>0
+\]
+
+The density of the area of the square, $X$, is
+\[
+f(X)=\frac{1}{b-a},~~a\leq X\leq b
+\]
+The density of the length of the square, $x$, is
+\[
+g(x)=2xf(x^2)=\frac{2x}{b-a},~~\sqrt{a}\leq x\leq\sqrt{b}
+\]
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{3}
+If $X$ has density $f$, find the density of (i)$aX+b$ where $a$ and $b$ are constants; (ii) $X^2$.
+\end{problem}
+\begin{sol}
+\\(i) The cumulative distribution function of $X$ is
+\[
+F(x)=P(X\leq x)=\int_{-\infty}^xf(u)du
+\]
+Let $x=aX+b$. If $a>0$, then the cumulative distribution function of $aX+b$ is
+\[
+G(x)=f(X\leq\frac{x-b}{a})=F(\frac{x-b}{a})=\int_{-\infty}^{\frac{x-b}{a}}f(u)du
+\]
+The density of $aX+b$ is
+\[
+g(x)=\frac{dG(x)}{dx}=\frac{d}{dx}\int_{-\infty}^{\frac{x-b}{a}}f(u)du=\frac{d}{d(\frac{x-b}{a})}\int_{-\infty}^{\frac{x-b}{a}}f(u)du\cdot\frac{d(\frac{x-b}{a})}{dx}=\frac{f(\frac{x-b}{a})}{a}
+\]
+If $a<0$, then the cumulative distribution of function $aX+b$ is
+\[
+G(x)=P(X\geq\frac{x-b}{a})=1-P(X<\frac{x-b}{a})=1-F(\frac{x-b}{a})=1-\int_{-\infty}^{\frac{x-b}{a}}f(u)du
+\]
+The density of $aX+b$ is
+\[
+g(x)=\frac{dG(x)}{dx}=\frac{d}{dx}[1-\int_{-\infty}^{\frac{x-b}{a}}f(u)du]=\frac{d}{d(\frac{x-b}{a})}[1-\int_{-\infty}^{\frac{x-b}{a}}f(u)du]\cdot\frac{d(\frac{x-b}{a})}{dx}=-\frac{f(\frac{x-b}{a})}{a}
+\]
+If $a=0$, then $x=b$ and
+\[
+f(x)=\delta(x-b)
+\]
+Therefore, then density of $aX+b$ is
+\[
+f(x)=
+\left\{\begin{array}{ll}
+\frac{f(\frac{x-b}{a})}{|a|},&\text{if }a\neq 0\\
+\delta(x-b),&\text{if }a=0
+\end{array}\right.
+\]
+(ii)Let $x=X^2$, then the cumulative distribution function of $X^2$ is
+\begin{align*}
+G(x)=&P(X^2\leq x)=P(-\sqrt{x}\leq X\leq\sqrt{x})=F(\sqrt{x})-F(-\sqrt{x})\\
+=&\int_{-\infty}^{\sqrt{x}}f(u)du-\int_{-\infty}^{-\sqrt{x}}f(u)du
+\end{align*}
+The density of $X^2$ is
+\begin{align*}
+g(x)=&\frac{dG(x)}{dx}=\frac{d}{dx}[\int_{-\infty}^{\sqrt{x}}f(u)du-\int_{-\infty}^{-\sqrt{x}}f(u)du]\\
+=&\frac{d}{d(\sqrt{x})}\int_{-\infty}^{\sqrt{x}}f(u)du\cdot\frac{d(\sqrt{x})}{dx}-\frac{d}{d(-\sqrt{x})}\int_{-\infty}^{-\sqrt{x}}f(u)du\cdot\frac{d(-\sqrt{x})}{dx}\\
+=&\frac{f(\sqrt{x})+f(-\sqrt{x})}{2\sqrt{x}}
+\end{align*}
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{4}
+If $f$ and $g$ are two density functions, show that $\lambda f+\mu g$ is also a density function, where $\lambda+\mu=1, \lambda\geq 0, \mu \geq 0$.
+\end{problem}
+\begin{sol}
+Because $f$ and $g$ are two density functions, $f$ and $g$ are monotonically increasing, which means, for $\forall u$,
+\[
+f(u)\geq0,~~g(u)\geq0
+\]
+Since $\lambda\geq0,\mu\geq0$,
+\begin{equation}
+\label{4.1}
+\lambda f(u)+\mu g(u)\geq0
+\end{equation}
+Because $f$ and $g$ are two density functions,
+\[
+\int_{-\infty}^{+\infty}f(u)du=1,~~\int_{-\infty}^{+\infty}g(u)du=1
+\]
+Since $\lambda+\mu=1$,
+\begin{equation}
+\label{4.2}
+\int_{-\infty}^{+\infty}\lambda f(u)+\mu g(u)du=\lambda\int_{-\infty}^{+\infty}f(u)du+\mu\int_{-\infty}^{+\infty}g(u)du=\lambda+\mu=1
+\end{equation}
+Because of (\ref{4.1}) and (\ref{4.2}), $\lambda f+\mu g$ is also a density function.
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{5}
+Let \[
+f(u)=ue^{-u}, \quad u\geq 0
+\]
+Show that $f$ is a density function. Find $\int_0^{\infty} uf(u) du$.
+\end{problem}
+\begin{sol}
+For $\forall u\geq0$,
+\begin{equation}
+\label{5.1}
+f(u)=ue^{-u}\geq0
+\end{equation}
+Besides,
+\begin{equation}
+\label{5.2}
+\int_{0}^{+\infty}f(u)du=\int_{0}^{+\infty}ue^{-u}du=-\int_{0}^{+\infty}ud(e^{-u})=-ue^{-u}|_0^{+\infty}+\int_0^{+\infty}e^{-u}du=-e^{-u}|_0^{+\infty}=1
+\end{equation}
+Because of (\ref{5.1}) and (\ref{5.2}), $f$ is a density function.
+\begin{align*}
+\int_0^{+\infty}uf(u)du=&\int_0^{+\infty}u^2e^{-u}du=-\int_0^{+\infty}u^2d(e^{-u})\\
+=&-u^2e^{-u}|_0^{+\infty}+\int_0^{+\infty}e^{-u}d(u^2)\\
+=&2\int_0^{+\infty}ue^{-u}du\\
+=&-2\int_0^{+\infty}ud(e^{-u})\\
+=&-2ue^{-u}|_0^{+\infty}+2\int_0^{+\infty}e^{-u}du\\
+=&-2e^{-u}|_0^{+\infty}\\
+=&2
+\end{align*}
+\end{sol}
+
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{6}
+A number of $\mu$ is called the median of the random variable $X$ iff $P(X\geq \mu)\geq 1/2$ and $P(X\leq \mu)\geq 1/2$. Show that such a number always exists but need not be unique. Here is a practical example. After $n$ examination papers have been graded, they are arranged in descending order. There is one in the middle if $n$ is odd, two if $n$ is even, corresponding to the median(s). Explain the probability model used.
+\end{problem}
+\begin{sol}
+Suppose such a number does not exist. Then for $\forall\mu$ s.t. $P(X\geq\mu)\geq\frac{1}{2}$, we must have $P(X\leq\mu)<\frac{1}{2}$. Let $\mu=\max\{x|P(X\geq x)\geq\frac{1}{2}\}$, so
+\[
+P(x\geq\mu)\geq\frac{1}{2}\Longrightarrow P(x\leq\mu)<\frac{1}{2}
+\]
+and for $\forall\delta>0$,
+\[
+P(X\geq\mu+\delta)<\frac{1}{2}
+\]
+Then
+\begin{gather*}
+P(X>\mu)=\lim_{\delta\to0}P(X\geq\mu+\delta)<\frac{1}{2}\\
+\Longrightarrow P(\Omega)=P(X\leq\mu)+P(X>\mu)<\frac{1}{2}+\frac{1}{2}=1
+\end{gather*}
+which contradicts the axiom of Probability. Therefore, the assumption is incorrect and there always exists the median.\\
+However, such a number need not be unique, for example,
+\[
+P(0)=\frac{1}{2},~~P(1)=\frac{1}{2}
+\]
+In this case,
+\begin{gather*}
+P(X\geq0)=1\geq\frac{1}{2},P(X\leq0)=\frac{1}{2}\geq\frac{1}{2}\\
+P(X\geq1)=\frac{1}{2}\geq\frac{1}{2},P(X\leq1)=1\geq\frac{1}{2}
+\end{gather*}
+so both $0$ and $1$ are the median.
+
+Let's explain the probability model used in the practical example: in the example, the random variable, $X$, is the grade of the examination paper. The sample space is ${x_1,x_2,\cdots,x_n}$, which is a set of the grades (arranged in descending order). The probability distribution is
+\[
+P(X=x_i)=\frac{1}{n},~~1\leq i\leq n
+\]
+If $n$ is odd, then
+\[
+P(X\geq x_{\frac{n+1}{2}})=\frac{n+1}{2n}\geq\frac{1}{2},~~P(X\leq x_{\frac{n+1}{2}})=\frac{n+1}{2n}\geq\frac{1}{2}
+\]
+while
+\begin{gather*}
+P(X\geq\mu)\geq\frac{1}{2},~~P(X\leq x_{\frac{n+1}{2}})<\frac{1}{2},~~\forall\mu<x_{\frac{n+1}{2}}\\
+P(X\geq\mu)<\frac{1}{2},~~P(X\leq x_{\frac{n+1}{2}})\geq\frac{1}{2},~~\forall\mu>x_{\frac{n+1}{2}}
+\end{gather*}
+So there is only one median.\\
+If $n$ is even, then
+\begin{gather*}
+P(X\geq x_{\frac{n}{2}})=\frac{\frac{n}{2}+1}{n}\geq\frac{1}{2},~~P(X\leq x_{\frac{n}{2}})=\frac{1}{2}\geq\frac{1}{2}\\
+P(X\geq x_{\frac{n}{2}+1})=\frac{1}{2}\geq\frac{1}{2},~~P(X\leq x_{\frac{n}{2}+1})=\frac{\frac{n}{2}+1}{n}\geq\frac{1}{2}
+\end{gather*}
+So there are two medians.
+\end{sol}
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{7}
+Suppose $X_1, X_2,X_3$ are independent identically distributed (i.i.d.) $\text{Unif}(0,1)$ random variables and let $Y=X_1+X_2+X_3$. (i). Find PDF of $Y$; (ii). Find $E(Y)$.
+\end{problem}
+\begin{sol}
+\\(i) The PDF of $X_1,X_2,X_3$ are all
+\[
+f(X_i)=
+\left\{\begin{array}{ll}
+1,&0\leq X_i\leq1\\
+0,&\text{otherwise}
+\end{array}\right.
+~~\text{for }i=1,2,3
+\]
+The PDF of $X_1+X_2$ is
+\[
+f(X_1+X_2=x)=\int_0^xf(x_1)f(x-x_1)dx_1
+\]
+When $0\leq x\leq1$,
+\[
+f(X_1+X_2=x)=\int_0^xf(x_1)f(x-x_1)dx_1=x,~~0\leq x\leq1
+\]
+When $1<x\leq2$,
+\[
+f(X_1+X_2=x)=\int_{x-1}^1f(x_1)f(x-x_1)dx_1=2-x,~~0\leq x\leq1
+\]
+The PDF of $X_1+X_2+X_3$ is
+\[
+f(Y=y)=\int_0^yf(X_1+X_2=x)f(X_3=y-u)du
+\]
+When $0\leq y\leq1$,
+\[
+f(Y=y)=\int_0^yf(X_1+X_2=u)f(X_3=y-u)du=\int_0^yudu=\frac{1}{2}y^2,~~0\leq Y\leq1
+\]
+When $1<y\leq2$,
+\begin{align*}
+f(Y=y)=&\int_{y-1}^yf(X_1+X_2=u)f(X_3=y-u)du\\
+=&\int_{y-1}^1f(X_1+X_2=u)f(X_3=y-u)du+\int_1^yf(X_1+X_2=u)f(X_3=y-u)du\\
+=&\int_{y-1}^1udu+\int_1^y(2-u)du\\
+=&-y^2+3y-\frac{3}{2},~~1<Y\leq2
+\end{align*}
+When $2<y\leq3$,
+\[
+f(Y=y)=\int_{y-1}^2f(X_1+X_2=u)f(X_3=y-u)du=\int_{y-1}^2(2-u)du=\frac{1}{2}y^2-3y+\frac{9}{2},~~2<Y\leq3
+\]
+Therefore,
+\[
+f(Y=y)=
+\left\{\begin{array}{ll}
+\frac{1}{2}y^2,&0\leq Y\leq1\\
+-y^2+3y-\frac{3}{2},&1<Y\leq2\\
+\frac{1}{2}y^2-3y+\frac{9}{2},&2<Y\leq3
+\end{array}\right.
+\]
+(ii) The expectation of $Y$ is
+\begin{align*}
+E(Y)=&\int_0^3yf(y)dy\\
+=&\int_0^1yf(y)dy+\int_1^2yf(y)dy+\int_2^3yf(y)dy\\
+=&\int_0^1\frac{1}{2}y^3+\int_1^2(-y^3+3y^2-\frac{3}{2}y)dy+\int_2^3(\frac{1}{2}y^3-3y^2+\frac{9}{2}y)dy\\
+=&\frac{3}{2}
+\end{align*}
+\end{sol}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{8}
+There are $40$ people in a room. Assume each person's birthday is equally likely to be any of the $365$ days of the year (we exclude February 29), and that peoples birthdays are independent (we assume there are no twins in the room). What is the probability that two or more people in the group have the same birthday?
+\end{problem}
+\begin{sol}
+The probability that two or more people in the group have the same birthday is
+\[
+P=1-\frac{P_{40}^{365}}{365^{40}}=1-\frac{\frac{365!}{(365-40)!}}{365^{40}}=1-\frac{364\cdot363\cdot\cdots\cdot326}{365^{39}}\approx0.8912
+\]
+\end{sol}
+
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{9}
+Let $X_1$,...,$X_n$ be independent, with $X_j\sim \text{Expo}(\lambda_j)$. Let $L=\min\{X_1,...,X_n\}$. Show that $L\sim \text{Expo}(\lambda_1+\lambda_2+\cdots+\lambda_n)$ and find $E(L)$.
+\end{problem}
+\begin{sol}
+Since $X_j\sim Expo(\lambda_j)$,
+\[
+f(X_j=x)=
+\left\{\begin{array}{ll}
+\lambda_je^{-\lambda_jx},&x\geq0\\
+0,&x<0
+\end{array}\right.
+\]
+Obviously,
+\[
+f(L=t)=0,~~t<0
+\]
+To find the density of $L$ for $t>0$, we first look for the cumulative distribution function of $L$ for $t>0$
+\begin{align*}
+F(t)=&P(L\leq t)=1-P(L>t)\\
+=&1-P(X_1>t,X_2>t,\cdots,X_n>t)\\
+=&1-P(X_1>t)\cdot P(X_2>t)\cdot\cdots\cdot P(X_n>t)\\
+=&1-e^{-\lambda_1t}\cdot e^{-\lambda_1t}\cdot\cdots\cdot e^{-\lambda_1t}\\
+=&1-e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t}
+\end{align*}
+Then the density of $L$ is
+\[
+f(t)=\frac{dF(t)}{dt}=\frac{d}{dt}[1-e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t}]=(\lambda_1+\lambda_2+\cdots+\lambda_n)e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t},~~x\geq0
+\]
+Therefore,
+\[
+f(L=t)=
+\left\{\begin{array}{ll}
+(\lambda_1+\lambda_2+\cdots+\lambda_n)e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t},&x\geq0\\
+0,&x<0
+\end{array}\right.
+\]
+$L\sim \text{Expo}(\lambda_1+\lambda_2+\cdots+\lambda_n)$.\\
+\footnotesize Reference:\\
+\url{https://projects.iq.harvard.edu/files/stat110/files/strategic_practice_and_homework_6.pdf}\normalsize\\
+The expectation of $L$ is
+\begin{align*}
+E(L)=&\int_{-\infty}^{+\infty}tf(t)dt\\
+=&\int_0^{+\infty}t(\lambda_1+\lambda_2+\cdots+\lambda_n)e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t}dt\\
+=&-\int_0^{+\infty}td[e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t}]\\
+=&-te^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t}|_0^{+\infty}+\int_0^{\infty}e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t}dt\\
+=&-\frac{1}{\lambda_1+\lambda_2+\cdots+\lambda_n}e^{-(\lambda_1+\lambda_2+\cdots+\lambda_n)t}|_0^{+\infty}\\
+=&\frac{1}{\lambda_1+\lambda_2+\cdots+\lambda_n}
+\end{align*}
+\end{sol}
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{10}
+(Expectation via Survival Function) Let $X$ be a nonnegative random variable. Let $F$ be the CDF of $X$, and $G(x) = 1-F(x) =P(X>x)$. The function $G$ is called the survival function of $X$. Show that \\(i). The expectation of a nonnegative integer-valued discrete random variable $X$ is \[E(X)=\sum_{n=0}^{\infty} G(n)\] 
+(ii). The expectation of a nonnegative continuous random variable $X$ is \[E(X)=\int_0^{\infty} G(x)dx\]
+\end{problem}
+\begin{sol}
+\\(i) 
+\begin{align*}
+E(X)=&0\cdot F(0)+\sum_{n=1}^{\infty}n[F(n)-F(n-1)]\\
+=&\sum_{n=1}^{\infty}nF(n)-\sum_{n=1}^{\infty}nF(n-1)\\
+=&\sum_{n=1}^{\infty}n[1-G(n)-1+G(n-1)]\\
+=&\sum_{n=1}^{\infty}n[G(n-1)-G(n)]\\
+=&\sum_{n=1}^{\infty}nG(n-1)-\sum_{n=1}^{\infty}nG(n)\\
+=&G(0)+\sum_{n=1}^{\infty}(n+1)G(n)-\sum_{n=1}^{\infty}nG(n)\\
+=&\sum_{n=0}^{\infty}G(n)
+\end{align*}
+(ii)
+\[
+\because G(x)=1-F(x),\therefore F'(x)=-G'(x)
+\]
+\begin{align*}
+E(X)=&\int_0^{+\infty}xf(x)dx\\
+=&\int_0^{+\infty}xF'(x)dx\\
+=&-\int_0^{+\infty}xG'(x)dx\\
+=&-\int_0^{+\infty}xd[G(x)]\\
+=&-xG(x)|_0^{+\infty}+\int_0^{+\infty}G(x)dx\\
+=&\int_0^{+\infty}G(x)dx
+\end{align*}
+\end{sol}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter anything below this line.
+\end{document}
